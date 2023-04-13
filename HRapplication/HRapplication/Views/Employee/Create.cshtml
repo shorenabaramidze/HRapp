@@ -1,0 +1,86 @@
+﻿@model HRapplication.Models.EmployeeViewModel
+
+@{
+    ViewData["Title"] = "Add Employee";
+    var errorMessage =TempData["errorMessage"]?.ToString();
+}
+
+<hr/>
+@if(!string.IsNullOrWhiteSpace(@errorMessage))
+{
+    <div class="alert alert-danger">
+        <strong>Error! </strong>@errorMessage
+        <button type="button" class="btn-close float-end" data-bs-dismiss="alert"></button>
+    </div>
+}
+
+<form action="Create" method="post">
+    <div class="mb-3">
+        <label class="form-label">ID Number</label>
+        <input type="number" class="form-control" asp-for="IdNumber" pattern="[0-9]{11}" />
+        <span asp-validation-for="IdNumber" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label class="form-label">First Name</label>
+        <input type="text" class="form-control" asp-for="FirstName"/>
+        <span asp-validation-for="FirstName" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Last Name</label>
+        <input type="text" class="form-control" asp-for="LastName"/>
+        <span asp-validation-for="LastName" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Gender</label>
+    <div>
+        <label class="form-check-inline">
+        <input class="form-check-input" type="radio" asp-for="Gender" value="Male">Male
+        </label>
+        <label class="form-check-inline">
+        <input class="form-check-input" type="radio" asp-for="Gender" value="Female">Female
+        </label>
+    </div>
+        <span asp-validation-for="Gender" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">BirthDate</label>
+        <input type="date" class="form-control" asp-for="Birthdate"/>
+        <span asp-validation-for="Birthdate" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Position</label>
+        <input type="text" class="form-control" asp-for="Position" required/>
+        <span asp-validation-for="Position" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Status</label>
+        <select class="form-select" asp-for="Status" required>
+            <option value="">Choose...</option>
+            <option value="Staff">Staff</option>
+            <option value="Non-Staff">Non-Staff</option>
+            <option value="Retired">Retired</option>
+        </select>
+        <span asp-validation-for="Status" class="text-danger"></span>
+   </div>
+
+    <div class="mb-3">
+        <label class="form-label">Retire Date</label>
+        <input type="date" class="form-control" asp-for="RetireDate"/>
+        <span asp-validation-for="RetireDate" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Telephone Number</label>
+        <input type="tel" class="form-control" asp-for="TelNumber" placeholder="(995) 555 55 55 55" pattern="\(\+995\)\s[0-9]{3}\s[0-9]{2}\s[0-9]{2}\s[0-9]{2}"/>
+        <span asp-validation-for="TelNumber" class="text-danger"></span>
+    </div>
+
+    <div class="d-grid">
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </div>
+
+</form>
